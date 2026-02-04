@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Vitality Digital Tech - Professional Design System */
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Professional Light Theme */
+    --background: 0 0% 100%;
+    /* Pure White */
+    --foreground: 222 47% 10%;
+    /* Deep Navy Text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 10%;
+
+    /* Primary: Deep Navy/Royal Blue (Trustworthy) */
+    --primary: 222 47% 20%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Secondary: Light Gray/Slate (Subtle) */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Accent: Subtle Gold/Bronze or darker blue for highlights */
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222 47% 20%;
+
+    --radius: 0.5rem;
+    /* Slightly tighter radius for professional look */
+
+    /* Custom Variables */
+    --gradient-start: 222 47% 20%;
+    --gradient-end: 222 47% 30%;
+  }
+
+  .dark {
+    /* Keep a dark mode available but cleaner */
+    --background: 222 47% 10%;
+    --foreground: 210 40% 98%;
+    /* ... optimize dark mode if needed, but user requested light theme mainly */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    @apply tracking-tight;
+  }
+}
+
+@layer components {
+
+  /* Clean Hero Section - No Heavy Gradients */
+  .hero-gradient {
+    @apply bg-background;
+    background-image: radial-gradient(circle at 50% 0%, hsl(220, 30%, 96%), transparent 70%);
+  }
+
+  /* Professional Card Hover */
+  .card-hover {
+    @apply transition-all duration-300 ease-out border border-border/50;
+  }
+
+  .card-hover:hover {
+    @apply shadow-lg border-primary/20;
+    transform: translateY(-2px);
+  }
+
+  /* Removed Glow Effects */
+
+  /* Glass Effect - clearer, more frosty */
+  .glass {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-sm;
+  }
+
+  /* Navigation Link - Underline style */
+  .nav-link {
+    @apply relative text-muted-foreground transition-colors duration-200 font-medium;
+  }
+
+  .nav-link:hover {
+    @apply text-foreground;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  /* Minimalist Service Icon */
+  .service-icon {
+    @apply w-12 h-12 rounded-lg flex items-center justify-center text-primary bg-primary/10;
+  }
+
+  /* Industry Card - Clean */
+  .industry-card {
+    @apply relative overflow-hidden rounded-xl p-6 transition-all duration-300 bg-secondary/30 border border-border;
+  }
+
+  /* Rich Dark Background (Footer/Sections) */
+  .bg-rich {
+    @apply bg-primary text-primary-foreground;
+  }
+
+
+  /* Professional Buttons - Pill Shaped */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground font-semibold px-8 py-3 rounded-full;
+    @apply transition-all duration-200 shadow-sm hover:shadow-md hover:bg-primary/90;
+  }
+
+  .btn-accent {
+    @apply bg-white text-primary border border-primary/20 font-semibold px-8 py-3 rounded-full;
+    @apply transition-all duration-200 hover:bg-primary/5;
+  }
+
+  .btn-outline {
+    @apply border border-input bg-transparent hover:bg-accent text-foreground px-8 py-3 rounded-full transition-colors font-medium;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
