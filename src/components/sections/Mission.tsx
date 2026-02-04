@@ -23,12 +23,12 @@ export const Mission = () => {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 mb-6 mx-auto lg:mx-0">
                 <Target className="w-4 h-4" />
-                <span className="text-sm font-semibold tracking-wide uppercase">
+                <span className="text-xs font-bold tracking-widest uppercase">
                   Our Purpose
                 </span>
               </div>
 
-              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-8 leading-tight">
                 {t('mission.title')}
               </h2>
 
@@ -59,7 +59,7 @@ export const Mission = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                 {t('mission.description')}
               </p>
             </motion.div>
