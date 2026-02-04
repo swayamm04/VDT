@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
-import { Mail, MapPin, Phone, Send, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, MapPin, Phone, Send, ArrowRight, Check } from 'lucide-react';
 import { useState } from 'react';
 
 export const Contact = () => {
@@ -203,36 +203,44 @@ export const Contact = () => {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting || isSuccess}
-                  className={`btn-accent w-full flex items-center justify-center gap-2 transition-all duration-300 ${isSuccess ? 'bg-primary text-white border-transparent' : ''
-                    }`}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      Sending...
-                    </>
-                  ) : isSuccess ? (
-                    'Message Sent Successfully!'
+                <AnimatePresence mode="wait">
+                  {!isSuccess ? (
+                    <motion.button
+                      key="submit"
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="btn-accent w-full flex items-center justify-center gap-2 transition-all duration-300"
+                      exit={{ opacity: 0, y: -10 }}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Send Message
+                          <Send className="w-4 h-4" />
+                        </>
+                      )}
+                    </motion.button>
                   ) : (
-                    <>
-                      Send Message
-                      <Send className="w-4 h-4" />
-                    </>
+                    <motion.div
+                      key="success"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="p-6 rounded-2xl bg-secondary/30 border-2 border-primary/20 flex flex-col items-center text-center gap-3"
+                    >
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                        <Check className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-foreground">Message Sent Successfully!</h4>
+                        <p className="text-sm text-muted-foreground mt-1">Thank you! We'll get back to you shortly.</p>
+                      </div>
+                    </motion.div>
                   )}
-                </button>
-
-                {isSuccess && (
-                  <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-center text-sm text-primary font-medium"
-                  >
-                    Thank you! We'll get back to you shortly.
-                  </motion.p>
-                )}
+                </AnimatePresence>
               </form>
             </div>
           </motion.div>
